@@ -63,7 +63,9 @@ namespace DataAnalysis
                     var line = reader.ReadLine();
                     if (line == null) break;
                     var parts = line.Split(',');
-                    for (int i = 0; i < parts.Length; i++)
+                    // Enhancement: replace simple Split with a robust CSV parser (e.g., CsvHelper) to support quoted commas.
+                    int limit = Math.Min(parts.Length, Columns.Count);
+                    for (int i = 0; i < limit; i++)
                     {
                         if (double.TryParse(parts[i], NumberStyles.Any, CultureInfo.InvariantCulture, out double val))
                         {
@@ -74,6 +76,7 @@ namespace DataAnalysis
                             // non‑numeric values are ignored
                         }
                     }
+                    // Ignore any extra fields beyond the header count to prevent index errors
                 }
             }
         }
@@ -86,6 +89,7 @@ namespace DataAnalysis
             {
                 results.Add(ComputeStats(col));
             }
+            // Enhancement: consider parallelizing this loop for large datasets.
             return results;
         }
 
@@ -102,19 +106,19 @@ namespace DataAnalysis
                     Max = double.NaN
                 };
             }
-            values.Sort();
+            var sorted = values.OrderBy(v => v).ToList();
             double mean = values.Average();
-            int n = values.Count;
-            double median = (n % 2 == 0) ? (values[n / 2 - 1] + values[n / 2]) / 2.0 : values[n / 2];
+            int n = sorted.Count;
+            double median = (n % 2 == 0) ? (sorted[n / 2 - 1] + sorted[n / 2]) / 2.0 : sorted[n / 2];
             double sumSq = values.Select(v => (v - mean) * (v - mean)).Sum();
-            double std = Math.Sqrt(sumSq / n);
+            double std = (n > 1) ? Math.Sqrt(sumSq / (n - 1)) : double.NaN; // sample standard deviation
             return new Statistics
             {
                 Mean = mean,
                 Median = median,
                 StandardDeviation = std,
-                Min = values.First(),
-                Max = values.Last()
+                Min = sorted.First(),
+                Max = sorted.Last()
             };
         }
     }
@@ -151,6 +155,7 @@ namespace DataAnalysis
                 Console.WriteLine($"  Min = {stats.Min:F4}");
                 Console.WriteLine($"  Max = {stats.Max:F4}");
             }
+            // Enhancement: allow exporting these results to JSON or CSV for downstream processing.
         }
     }
 }
