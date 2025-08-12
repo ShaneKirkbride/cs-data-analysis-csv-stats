@@ -36,7 +36,7 @@ the program prints:
 Column 1:
   Mean = 4.0000
   Median = 4.0000
-  Std Dev = 2.4495
+  Std Dev = 3.0000
   Min = 1.0000
   Max = 7.0000
 ...

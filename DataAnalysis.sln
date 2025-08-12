@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnalysis", "DataAnalysis.csproj", "{07C14BC7-BB4C-4AE9-8F6F-60E90DB9CE94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAnalysis.Tests", "DataAnalysis.Tests\DataAnalysis.Tests.csproj", "{AF5B5122-52E2-46A6-A18C-327F523A8CEA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07C14BC7-BB4C-4AE9-8F6F-60E90DB9CE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C14BC7-BB4C-4AE9-8F6F-60E90DB9CE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C14BC7-BB4C-4AE9-8F6F-60E90DB9CE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C14BC7-BB4C-4AE9-8F6F-60E90DB9CE94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5B5122-52E2-46A6-A18C-327F523A8CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5B5122-52E2-46A6-A18C-327F523A8CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5B5122-52E2-46A6-A18C-327F523A8CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5B5122-52E2-46A6-A18C-327F523A8CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
