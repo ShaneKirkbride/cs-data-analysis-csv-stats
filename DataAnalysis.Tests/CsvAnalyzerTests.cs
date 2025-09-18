@@ -62,4 +62,24 @@ public class CsvAnalyzerTests
         Assert.Equal(1, stats.Min, 5);
         Assert.Equal(4, stats.Max, 5);
     }
+
+    [Fact]
+    public void Analyze_SingleValue_StandardDeviationZero()
+    {
+        string csv = "A\n5\n";
+        string path = Path.GetTempFileName();
+        File.WriteAllText(path, csv);
+
+        var analyzer = new CsvAnalyzer();
+        analyzer.Load(path);
+        var results = analyzer.Analyze();
+
+        Assert.Single(results);
+        var stats = results[0];
+        Assert.Equal(5, stats.Mean, 5);
+        Assert.Equal(5, stats.Median, 5);
+        Assert.Equal(0, stats.StandardDeviation, 5);
+        Assert.Equal(5, stats.Min, 5);
+        Assert.Equal(5, stats.Max, 5);
+    }
 }

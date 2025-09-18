@@ -111,7 +111,8 @@ namespace DataAnalysis
             int n = sorted.Count;
             double median = (n % 2 == 0) ? (sorted[n / 2 - 1] + sorted[n / 2]) / 2.0 : sorted[n / 2];
             double sumSq = values.Select(v => (v - mean) * (v - mean)).Sum();
-            double std = (n > 1) ? Math.Sqrt(sumSq / (n - 1)) : double.NaN; // sample standard deviation
+            // For a single value, the dispersion is zero rather than NaN
+            double std = (n > 1) ? Math.Sqrt(sumSq / (n - 1)) : 0.0; // sample standard deviation
             return new Statistics
             {
                 Mean = mean,
